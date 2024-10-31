@@ -1,0 +1,22 @@
+.search-container {
+  position: relative;
+}
+
+.search-input {
+  font-size: 14px;
+  padding: 12px 24px 12px 50px;
+  line-height: 1.28;
+  width: 130px;
+  border-radius: 1000px;
+  background-color: transparent;
+  color: var(--main-white);
+  border: 1px solid var(--main-white);
+  outline: transparent;
+}
+
+.ico-search {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 24px;
+}

@@ -1,0 +1,12 @@
+.container-characters {
+  padding-top: 340px;
+  padding-bottom: 330px;
+  background: url('../../assets/img/desktop/start/start.jpg') no-repeat;
+}
+
+.header {
+  font-size: 150px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
