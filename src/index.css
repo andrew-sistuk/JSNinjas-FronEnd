@@ -2,10 +2,14 @@
 
 :root {
   font-family: 'Poppins', sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 500;
   --main-white: #fafafa;
+  --main-white-opacity: #fafafa4d;
   --main-dark: #000000;
+  --dark-disable: #171717;
+  --main-violet: #34387f;
   width: 100vw;
 
   color: var(--main-white);

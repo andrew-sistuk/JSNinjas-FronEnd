@@ -1,12 +1,38 @@
-.container-characters {
+.hero {
+  margin-bottom: 45px;
+}
+
+.hero-container {
   padding-top: 340px;
   padding-bottom: 330px;
-  background: url('../../assets/img/desktop/start/start.jpg') no-repeat;
+  background: url('../../assets/img/hero.jpg') no-repeat;
+}
+
+@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  background-image: url('../../assets/img/hero@2x.jpg');
 }
 
 .header {
   font-size: 150px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.02em;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-container {
+    background-image: url('../../assets/img/tablet/start/hero.jpg');
+  }
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    .hero-container {
+      background-image: url('../../assets/img/tablet/start/hero@2x.jpg');
+    }
+  }
+}
+@media screen and (min-width: 1440px) {
+  .hero-container {
+    background-image: url('../../assets/img/desktop/start/hero.jpg');
+  }
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    .hero-container {
+      background-image: url('../../assets/img/desktop/start/hero@2x.jpg');
+    }
+  }
 }

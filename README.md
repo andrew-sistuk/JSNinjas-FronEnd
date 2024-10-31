@@ -55,9 +55,9 @@
 4. fix index.css
 5. add reset.css
 6. and add structure folders
+7. add jsconfig.json
 
 
 ## Future features
 
-1) add jsconfig.json
-2) add package-lock.json to .gitignore
+1) add package-lock.json to .gitignore
