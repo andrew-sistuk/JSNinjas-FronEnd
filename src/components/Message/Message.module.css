@@ -7,7 +7,7 @@
   height: 150px;
   padding-top: 40px;
   padding-bottom: 80px;
-  background: no-repeat center / contain content-box url('src/assets/icons/container.svg');
+  background: no-repeat center / contain content-box url('../../assets/icons/container.svg');
 }
 
 .message {

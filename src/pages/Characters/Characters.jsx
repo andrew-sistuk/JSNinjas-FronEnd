@@ -14,7 +14,7 @@ function Characters() {
   const error = useSelector(selectError);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = parseInt(searchParams.get('page')) ?? 1;
+  const page = parseInt(searchParams.get('page')) || 1;
 
   console.log(page);
 
