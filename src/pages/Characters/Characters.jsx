@@ -3,25 +3,23 @@ import { useEffect } from 'react';
 
 import css from './Characters.module.css';
 
-import { selectPage, fetchCharacters, selectLoading } from 'myRedux';
+import { selectPage, fetchCharacters, selectLoading, selectError } from 'myRedux';
 import { Container } from 'layouts';
-import { CharactersList, Pagination, Loader, Message } from 'components';
+import { CharactersList, Pagination, Message } from 'components';
 
 function Characters() {
   const dispatch = useDispatch();
   const page = useSelector(selectPage);
   const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchCharacters(page));
   }, [dispatch]);
 
-  // const perPage = useSelector(selectPerPage);
-  // const totalItems = useSelector(selectTotalItems);
-  // const hasNextPage = useSelector(selectHasNextPage);
-  // const hasPreviousPage = useSelector(selectHasPreviousPage);
-
-  return (
+  return error ? (
+    <Message message="Something went wrong. Please try again." />
+  ) : (
     <main>
       <section className={css.hero}>
         <Container className={css['hero-container']}>
