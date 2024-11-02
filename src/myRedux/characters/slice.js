@@ -4,7 +4,7 @@ import { fetchCharacter, fetchCharacters } from './operations';
 const defaultProperties = state => {
   state.items = [];
   state.item = {};
-  state.totalPages = 0;
+  state.totalPages = 1;
 };
 
 const handlePending = state => {
@@ -23,7 +23,7 @@ const charactersSlice = createSlice({
   initialState: {
     items: [],
     item: {},
-    totalPages: 0,
+    totalPages: 1,
     loading: false,
     error: null,
   },
