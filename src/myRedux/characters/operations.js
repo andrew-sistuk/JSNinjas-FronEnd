@@ -24,7 +24,7 @@ export const fetchCharacter = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.get(`/characters/${id}`);
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -9,7 +9,7 @@ export function CharactersList() {
   return (
     <ul className={css.characters}>
       {characters.map(({ _id, nickname }) => (
-        <Character key={_id} name={nickname}></Character>
+        <Character key={_id} id={_id} name={nickname}></Character>
       ))}
     </ul>
   );
