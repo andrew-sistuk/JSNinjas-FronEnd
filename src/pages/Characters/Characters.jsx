@@ -3,25 +3,35 @@ import { useEffect } from 'react';
 
 import css from './Characters.module.css';
 
-import { selectPage, fetchCharacters, selectLoading, selectError } from 'myRedux';
+import { fetchCharacters, selectLoading, selectError } from 'myRedux';
 import { Container } from 'layouts';
 import { CharactersList, Pagination, Message } from 'components';
+import { useSearchParams } from 'react-router-dom';
 
 function Characters() {
   const dispatch = useDispatch();
-  const page = useSelector(selectPage);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = parseInt(searchParams.get('page')) ?? 1;
+
+  console.log(page);
+
   useEffect(() => {
     dispatch(fetchCharacters(page));
-  }, [dispatch]);
+  }, [dispatch, page]);
 
-  return error ? (
+  function handlePageChange(event) {
+    const selectedPage = event.selected + 1;
+    setSearchParams({ page: selectedPage });
+  }
+
+  return error && !loading ? (
     <Message message="Something went wrong. Please try again." />
   ) : (
     <main>
-      <section className={css.hero}>
+      <section>
         <Container className={css['hero-container']}>
           <h1 className={css.header}>Characters</h1>
         </Container>
@@ -31,7 +41,7 @@ function Characters() {
         <Container>
           {loading && <Message message="Loading..." />}
           <CharactersList />
-          <Pagination />
+          <Pagination handleChange={handlePageChange} page={page} />
         </Container>
       </section>
     </main>

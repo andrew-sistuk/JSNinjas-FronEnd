@@ -6,7 +6,7 @@
       "components/*": ["components/*"],
       "layouts/*": ["layouts/*"],
       "myRedux/*": ["myRedux/*"],
-      "helpers/*": ["myRedux/*"],
+      "helpers/*": ["helpers/*"],
       "assets/*": ["assets/*"]
     }
   },

@@ -1,12 +1,9 @@
 import css from './Pagination.module.css';
 import ReactPaginate from 'react-paginate';
-import { fetchCharacters } from 'myRedux/characters/operations.js';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectPage, selectTotalPages } from 'myRedux/characters/selectors.js';
+import { useSelector } from 'react-redux';
+import { selectTotalPages } from 'myRedux';
 
-export function Pagination() {
-  const dispatch = useDispatch();
-  const page = useSelector(selectPage);
+export function Pagination({ page, handleChange }) {
   const totalPages = useSelector(selectTotalPages);
 
   return (
@@ -20,9 +17,9 @@ export function Pagination() {
       previousLinkClassName={css['paginate-previous-link']}
       nextLinkClassName={css['paginate-next-link']}
       disabledClassName={css['paginate-disabled']}
-      // initialPage={page}
+      forcePage={page - 1}
       pageCount={totalPages}
-      onPageChange={event => dispatch(fetchCharacters(event.selected + 1))}
+      onPageChange={handleChange}
       previousLabel="<"
       breakLabel="..."
       nextLabel=">"

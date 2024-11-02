@@ -1,11 +1,8 @@
-.hero {
-  margin-bottom: 45px;
-}
-
 .hero-container {
   padding-top: 340px;
   padding-bottom: 330px;
-  background: url('../../assets/img/hero.jpg') no-repeat;
+  background-size: contain;
+  background: no-repeat url('../../assets/img/hero.jpg');
 }
 
 @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {

@@ -4,7 +4,6 @@ import { fetchCharacter, fetchCharacters } from './operations';
 const defaultProperties = state => {
   state.items = [];
   state.item = {};
-  state.page = 1;
   state.totalPages = 0;
 };
 
@@ -24,7 +23,6 @@ const charactersSlice = createSlice({
   initialState: {
     items: [],
     item: {},
-    page: 1,
     totalPages: 0,
     loading: false,
     error: null,
@@ -34,7 +32,6 @@ const charactersSlice = createSlice({
       .addCase(fetchCharacters.pending, handlePending)
       .addCase(fetchCharacters.fulfilled, (state, action) => {
         state.items = action.payload.data;
-        state.page = action.payload.page;
         state.totalPages = action.payload.totalPages;
         state.loading = false;
         state.error = null;
