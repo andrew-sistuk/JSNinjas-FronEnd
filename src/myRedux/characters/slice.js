@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchCharacter, fetchCharacters } from './operations';
 
-const handleDefaultProperties = state => {
+const defaultProperties = state => {
   state.items = [];
   state.page = 1;
   state.perPage = 5;
@@ -11,9 +11,15 @@ const handleDefaultProperties = state => {
   state.hasPreviousPage = false;
 };
 
+const handlePending = state => {
+  state.loading = true;
+  defaultProperties(state);
+};
+
 const handleRejected = (state, action) => {
   state.error = action.payload;
-  handleDefaultProperties(state);
+  state.loading = false;
+  defaultProperties(state);
 };
 
 const charactersSlice = createSlice({
@@ -31,7 +37,7 @@ const charactersSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchCharacters.pending, handleDefaultProperties)
+      .addCase(fetchCharacters.pending, handlePending)
       .addCase(fetchCharacters.fulfilled, (state, action) => {
         state.items = action.payload.data;
         state.page = action.payload.page;
@@ -45,7 +51,7 @@ const charactersSlice = createSlice({
       })
       .addCase(fetchCharacters.rejected, handleRejected)
 
-      .addCase(fetchCharacter.pending, handleDefaultProperties)
+      .addCase(fetchCharacter.pending, handlePending)
       .addCase(fetchCharacter.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;

@@ -1,3 +1,3 @@
 import Logo from '../assets/icons/marvel.svg?react';
-import NotFound from '../assets/icons/not-found.svg';
+import NotFound from './icons/container.svg';
 export { Logo, NotFound };

@@ -3,21 +3,15 @@ import { useEffect } from 'react';
 
 import css from './Characters.module.css';
 
-import {
-  selectPage,
-  // selectPerPage,
-  // selectTotalItems,
-  // selectTotalPages,
-  // selectHasNextPage,
-  // selectHasPreviousPage,
-  fetchCharacters,
-} from 'myRedux';
+import { selectPage, fetchCharacters, selectLoading } from 'myRedux';
 import { Container } from 'layouts';
-import { CharactersList, Pagination } from 'components';
+import { CharactersList, Pagination, Loader, Message } from 'components';
 
 function Characters() {
   const dispatch = useDispatch();
   const page = useSelector(selectPage);
+  const loading = useSelector(selectLoading);
+
   useEffect(() => {
     dispatch(fetchCharacters(page));
   }, [dispatch]);
@@ -37,6 +31,7 @@ function Characters() {
       <section>
         <h2 className="visually-hidden">List characters</h2>
         <Container>
+          {loading && <Message message="Loading..." />}
           <CharactersList />
           <Pagination />
         </Container>
