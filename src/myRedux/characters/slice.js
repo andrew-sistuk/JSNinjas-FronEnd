@@ -81,10 +81,10 @@ const charactersSlice = createSlice({
       .addCase(updateCharacter.rejected, handleRejectedItem)
 
       .addCase(deleteCharacterImg.pending, handlePendingItem)
-      .addCase(deleteCharacterImg.fulfilled, (state, action) => {
+      .addCase(deleteCharacterImg.fulfilled, state => {
         state.loading = false;
         state.error = null;
-        state.item = action.payload;
+        // state.item = action.payload;
         toast(`Delete img`);
       })
       .addCase(deleteCharacterImg.rejected, handleRejectedItem)

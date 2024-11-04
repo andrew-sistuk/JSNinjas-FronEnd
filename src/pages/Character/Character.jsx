@@ -54,7 +54,11 @@ function Character() {
                   <img className={css.img} src={img} alt={img.substring(img.indexOf('_') + 1)} />
                   <Button
                     value="Delete"
-                    onClick={() => dispatch(deleteCharacterImg({ id, imgName }))}
+                    handleClick={() =>
+                      dispatch(deleteCharacterImg({ id, imgName })).then(() => {
+                        window.location.reload(); // Перезавантажити сторінку після успішного видалення
+                      })
+                    }
                   />
                 </li>
               );
