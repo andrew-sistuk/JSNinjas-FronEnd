@@ -1,9 +1,21 @@
-.link {
+.link-container {
   width: 100%;
 }
 
+.link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .img {
+  height: 445px;
+  width: 332px;
+  object-fit: cover;
+  border-radius: 4px;
+  overflow: hidden;
   margin-bottom: 16px;
+  border: 2px solid var(--main-violet);
 }
 
 .name {
@@ -11,13 +23,13 @@
 }
 
 @media screen and (min-width: 768px) {
-  .link {
+  .link-container {
     width: calc((100% - 15px) / 2);
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .link {
+  .link-container {
     width: calc((100% - 15px * 4) / 5);
   }
 }

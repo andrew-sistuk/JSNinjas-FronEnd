@@ -35,6 +35,28 @@
   color: var(--main-white-opacity);
 }
 
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 65px;
+}
+
+.photo-container {
+  width: 100%;
+}
+
+.img {
+  height: 445px;
+  width: 332px;
+  object-fit: cover;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 2px solid var(--main-violet);
+}
+
 @media screen and (min-width: 768px) {
   .nickname {
     font-size: 24px;
@@ -48,11 +70,18 @@
     font-size: 16px;
     line-height: 1.125;
   }
+
+  .photo-container {
+    width: calc((100% - 15px) / 2);
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .info {
     margin: 0 auto;
     width: 536px;
+  }
+  .photo-container {
+    width: calc((100% - 15px * 4) / 5);
   }
 }

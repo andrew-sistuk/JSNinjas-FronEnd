@@ -25,7 +25,7 @@ function Character() {
     dispatch(fetchCharacter(id));
   }, [dispatch, id]);
 
-  const { nickname, real_name, origin_description, superpowers, catch_phrase } =
+  const { nickname, real_name, origin_description, superpowers, catch_phrase, images } =
     useSelector(selectCharacter);
 
   const handleDelete = () => {
@@ -38,22 +38,20 @@ function Character() {
 
   return error && !loading ? (
     <Message message="Something went wrong. Please try again." />
+  ) : loading ? (
+    <Message message="Loading..." />
   ) : (
     <section className={css.character}>
       <Container>
-        {loading && <Message message="Loading..." />}
-        <ul className={css.gallery}>
-          {/*{gallery.map(({id, thumb, original}) => (*/}
-          {/*    <li className={css['photo-container']} key={id}>*/}
-          {/*        <button*/}
-          {/*            className={css['open-modal']}*/}
-          {/*            onClick={() => handleClick(original)}*/}
-          {/*        >*/}
-          {/*            <img className={css.img} src={thumb} alt={name}/>*/}
-          {/*        </button>*/}
-          {/*    </li>*/}
-          {/*))}*/}
-        </ul>
+        {images && (
+          <ul className={css.gallery}>
+            {images.map(img => (
+              <li className={css['photo-container']} key={img}>
+                <img className={css.img} src={img} alt={img.substring(img.indexOf('_') + 1)} />
+              </li>
+            ))}
+          </ul>
+        )}
 
         <div className={css.info}>
           <h2 className={css.nickname}>{nickname}</h2>
