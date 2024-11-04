@@ -1,6 +1,6 @@
 ### README (Українська)
 
-# TestTravelTrucks
+# JSNinjas-FrontEnd
 
 Цей проєкт створений за допомогою стеку Vite та React. Він надає швидке і сучасне середовище для розробки веб-застосунків.
 
@@ -63,7 +63,7 @@ axios.defaults.baseURL = 'https://jsninjas-backend.onrender.com';
 
 ### README (English)
 
-#TestTravelTrucks
+#JSNinjas-FrontEnd
 
 This project is built using the Vite stack and React. It provides a fast and modern environment for developing web applications.
 
