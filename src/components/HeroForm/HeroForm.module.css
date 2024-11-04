@@ -51,6 +51,9 @@
   margin-bottom: 24px;
 }
 
-.button {
-  align-self: center;
+@media screen and (min-width: 1440px) {
+  .container {
+    margin: 0 auto;
+    width: 768px;
+  }
 }

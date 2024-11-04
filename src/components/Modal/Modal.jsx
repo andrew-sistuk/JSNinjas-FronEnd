@@ -11,12 +11,6 @@ ReactModal.setAppElement('#root');
 export function Modal() {
   const { modal, setModal } = useModal();
 
-  function renderContentModal() {
-    if (!modal) return null;
-
-    return <HeroForm />;
-  }
-
   function handleClose() {
     setModal({
       isOpen: false,
@@ -28,7 +22,7 @@ export function Modal() {
     <ReactModal
       style={{
         overlay: {
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          backgroundColor: 'rgba(0, 0, 0)',
           zIndex: 999,
         },
         content: {
@@ -44,7 +38,7 @@ export function Modal() {
       onRequestClose={handleClose}
     >
       <MdOutlineClose className={css.close} onClick={handleClose} />
-      {renderContentModal()}
+      <HeroForm />
     </ReactModal>
   );
 }
