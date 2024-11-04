@@ -2,6 +2,7 @@
   padding-top: 25px;
   display: flex;
   justify-content: space-between;
+  gap: 15px;
   flex-wrap: wrap;
   margin-bottom: 65px;
 }
