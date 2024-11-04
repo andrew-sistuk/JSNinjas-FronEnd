@@ -10,8 +10,10 @@ import { schemaCreate, schemaUpdate, useModal } from 'helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCharacter } from 'myRedux/characters/selectors.js';
 import { addCharacter, updateCharacter } from 'myRedux/characters/operations.js';
+import { useRef } from 'react';
 
 export function HeroForm() {
+  const inputFileRef = useRef(null);
   const character = useSelector(selectCharacter);
   const { modal, setModal } = useModal();
   const dispatch = useDispatch();
@@ -32,10 +34,22 @@ export function HeroForm() {
 
   function onSubmit(data) {
     console.log('Form Data:', data);
+
+    const formData = new FormData();
+
+    Object.keys(data).forEach(key => {
+      formData.append(key, data[key]);
+    });
+
+    const files = inputFileRef.current.files;
+    for (let i = 0; i < files.length; i++) {
+      formData.append('images', files[i]);
+    }
+    // console.log(formData);
     if (type) {
-      dispatch(updateCharacter({ _id: character._id, ...data }));
+      dispatch(updateCharacter({ _id: character._id, formData }));
     } else {
-      dispatch(addCharacter(data));
+      dispatch(addCharacter(formData));
     }
 
     setModal({
@@ -115,6 +129,13 @@ export function HeroForm() {
         place="top-end"
         variant={errors.name ? 'error' : 'dark'}
         content={errors.name ? errors.name.message : 'You must write catch phrase this character'}
+      />
+      <input
+        className={clsx(css.field, css.images)}
+        ref={inputFileRef}
+        type="file"
+        accept=".jpg,.jpeg,.png,.webp"
+        multiple
       />
 
       <Button value="Send" type="submit" />

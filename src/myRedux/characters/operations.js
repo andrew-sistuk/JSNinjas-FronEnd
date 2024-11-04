@@ -35,7 +35,11 @@ export const addCharacter = createAsyncThunk(
   'characters/addCharacter',
   async (newHero, thunkAPI) => {
     try {
-      const result = await axios.post('/characters', { ...newHero });
+      const result = await axios.post('/characters', newHero, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       console.log(result.data.data);
       return result.data.data;
     } catch (error) {
@@ -49,8 +53,11 @@ export const updateCharacter = createAsyncThunk(
   async (newHero, thunkAPI) => {
     try {
       const id = newHero._id;
-      delete newHero._id;
-      const response = await axios.patch(`/characters/${id}`, { ...newHero });
+      const response = await axios.patch(`/characters/${id}`, newHero.formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       return response.data.data.character;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

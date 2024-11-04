@@ -48,6 +48,9 @@
 .comment {
   resize: none;
   height: 118px;
+}
+
+.images {
   margin-bottom: 24px;
 }
 

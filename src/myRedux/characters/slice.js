@@ -84,6 +84,7 @@ const charactersSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.item = {};
+        toast(`Complete delete character`);
       })
       .addCase(deleteCharacter.rejected, handleRejected);
   },
