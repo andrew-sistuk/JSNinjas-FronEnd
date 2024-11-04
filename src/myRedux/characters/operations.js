@@ -30,3 +30,14 @@ export const fetchCharacter = createAsyncThunk(
     }
   }
 );
+
+export const deleteCharacter = createAsyncThunk(
+  'characters/deleteCharacter',
+  async (id, thunkAPI) => {
+    try {
+      await axios.delete(`/characters/${id}`);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

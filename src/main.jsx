@@ -12,11 +12,15 @@ import { Provider } from 'react-redux';
 
 import { appState } from 'myRedux';
 
+import { ModalProvider } from 'helpers';
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={appState}>
       <BrowserRouter>
-        <App />
+        <ModalProvider>
+          <App />
+        </ModalProvider>
       </BrowserRouter>
     </Provider>
   </StrictMode>

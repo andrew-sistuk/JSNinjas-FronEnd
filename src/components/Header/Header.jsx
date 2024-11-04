@@ -9,7 +9,7 @@ function Header() {
     <>
       <header className={css.header}>
         <Container className={css['container-header']}>
-          <Link to="/">
+          <Link to="/characters">
             <Logo width={78} height={32} />
           </Link>
           <Search />

@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 57px 44px;
+  border-radius: 10px;
+  border: 2px solid var(--main-violet);
+  flex: 1 1 641px;
+}
+
+.header {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.field {
+  padding: 18px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  border-radius: 10px;
+  color: var(--main-white);
+  background: var(--dark-disable);
+  margin-bottom: 14px;
+  outline: transparent;
+  border: 2px solid transparent;
+}
+
+.field:hover,
+.field:focus {
+  border-color: var(--main-violet);
+}
+
+.input::placeholder {
+  color: var(--main-white);
+}
+
+.comment {
+  resize: none;
+  height: 118px;
+  margin-bottom: 24px;
+}
+
+.button {
+  align-self: center;
+}

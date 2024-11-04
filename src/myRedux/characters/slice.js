@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCharacter, fetchCharacters } from './operations';
+import { fetchCharacters, fetchCharacter, deleteCharacter } from './operations';
 
 const defaultProperties = state => {
   state.items = [];
   state.item = {};
-  state.totalPages = 1;
+  state.totalPages = 0;
 };
 
 const handlePending = state => {
@@ -23,7 +23,7 @@ const charactersSlice = createSlice({
   initialState: {
     items: [],
     item: {},
-    totalPages: 1,
+    totalPages: 0,
     loading: false,
     error: null,
   },
@@ -44,7 +44,14 @@ const charactersSlice = createSlice({
         state.error = null;
         state.item = action.payload;
       })
-      .addCase(fetchCharacter.rejected, handleRejected);
+      .addCase(fetchCharacter.rejected, handleRejected)
+      .addCase(deleteCharacter.pending, handlePending)
+      .addCase(deleteCharacter.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.item = {};
+      })
+      .addCase(deleteCharacter.rejected, handleRejected);
   },
 });
 
