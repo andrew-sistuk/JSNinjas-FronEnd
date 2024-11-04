@@ -75,3 +75,16 @@ export const deleteCharacter = createAsyncThunk(
     }
   }
 );
+
+export const deleteCharacterImg = createAsyncThunk(
+  'characters/deleteCharacterImg',
+  async (data, thunkAPI) => {
+    try {
+      const { id, imgName } = data;
+      console.log(data);
+      await axios.delete(`/characters/img/${id}/${imgName}`);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

@@ -5,6 +5,7 @@ import {
   deleteCharacter,
   addCharacter,
   updateCharacter,
+  deleteCharacterImg,
 } from './operations';
 import { toast } from 'react-toastify';
 
@@ -78,6 +79,15 @@ const charactersSlice = createSlice({
         toast(`Update ${action.payload.nickname} character`);
       })
       .addCase(updateCharacter.rejected, handleRejectedItem)
+
+      .addCase(deleteCharacterImg.pending, handlePendingItem)
+      .addCase(deleteCharacterImg.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.item = action.payload;
+        toast(`Delete img`);
+      })
+      .addCase(deleteCharacterImg.rejected, handleRejectedItem)
 
       .addCase(deleteCharacter.pending, handlePending)
       .addCase(deleteCharacter.fulfilled, state => {

@@ -45,7 +45,6 @@ export function HeroForm() {
     for (let i = 0; i < files.length; i++) {
       formData.append('images', files[i]);
     }
-    // console.log(formData);
     if (type) {
       dispatch(updateCharacter({ _id: character._id, formData }));
     } else {
@@ -136,6 +135,13 @@ export function HeroForm() {
         type="file"
         accept=".jpg,.jpeg,.png,.webp"
         multiple
+        data-tooltip-id="my-tooltip-catch-images"
+      />
+      <ReactTooltip
+        id="my-tooltip-catch-images"
+        place="top-end"
+        variant="dark"
+        content="You can add one or more photosone of this formats: .jpg,.jpeg,.png,.webp"
       />
 
       <Button value="Send" type="submit" />

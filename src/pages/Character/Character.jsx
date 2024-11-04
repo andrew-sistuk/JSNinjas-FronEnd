@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {
   deleteCharacter,
+  deleteCharacterImg,
   fetchCharacter,
   selectCharacter,
   selectError,
@@ -45,11 +46,19 @@ function Character() {
       <Container>
         {images && (
           <ul className={css.gallery}>
-            {images.map(img => (
-              <li className={css['photo-container']} key={img}>
-                <img className={css.img} src={img} alt={img.substring(img.indexOf('_') + 1)} />
-              </li>
-            ))}
+            {/* тут краще і правильніше звісно робити чрз id */}
+            {images.map(img => {
+              const imgName = img.substring(img.indexOf('_') + 1);
+              return (
+                <li className={css['photo-container']} key={img}>
+                  <img className={css.img} src={img} alt={img.substring(img.indexOf('_') + 1)} />
+                  <Button
+                    value="Delete"
+                    onClick={() => dispatch(deleteCharacterImg({ id, imgName }))}
+                  />
+                </li>
+              );
+            })}
           </ul>
         )}
 
