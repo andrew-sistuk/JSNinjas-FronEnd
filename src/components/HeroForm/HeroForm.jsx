@@ -1,7 +1,6 @@
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
-import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 
 import css from './HeroForm.module.css';
@@ -43,7 +42,6 @@ export function HeroForm() {
       isOpen: false,
       type: 'create',
     });
-    toast('Booking sent!');
   }
 
   return (

@@ -29,8 +29,11 @@ function Character() {
     useSelector(selectCharacter);
 
   const handleDelete = () => {
-    dispatch(deleteCharacter(id));
-    navigate('/characters');
+    const userConfirmed = confirm('Are you sure?');
+    if (userConfirmed) {
+      dispatch(deleteCharacter(id));
+      navigate('/characters');
+    }
   };
 
   return error && !loading ? (
