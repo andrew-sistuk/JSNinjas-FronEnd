@@ -84,7 +84,6 @@ const charactersSlice = createSlice({
       .addCase(deleteCharacterImg.fulfilled, state => {
         state.loading = false;
         state.error = null;
-        // state.item = action.payload;
         toast(`Delete img`);
       })
       .addCase(deleteCharacterImg.rejected, handleRejectedItem)
