@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCharacters, fetchCharacter, deleteCharacter } from './operations';
+import {
+  fetchCharacters,
+  fetchCharacter,
+  deleteCharacter,
+  addCharacter,
+  updateCharacter,
+} from './operations';
+import { toast } from 'react-toastify';
 
 const defaultProperties = state => {
   state.items = [];
@@ -16,6 +23,14 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
   state.loading = false;
   defaultProperties(state);
+};
+
+const handlePendingItem = state => {
+  state.loading = true;
+};
+const handleRejectedItem = (state, action) => {
+  state.error = action.payload;
+  state.loading = false;
 };
 
 const charactersSlice = createSlice({
@@ -45,8 +60,27 @@ const charactersSlice = createSlice({
         state.item = action.payload;
       })
       .addCase(fetchCharacter.rejected, handleRejected)
+
+      .addCase(addCharacter.pending, handlePendingItem)
+      .addCase(addCharacter.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        // state.item = action.payload;
+        toast(`Add new character ${action.payload.nickname}`);
+      })
+      .addCase(addCharacter.rejected, handleRejectedItem)
+
+      .addCase(updateCharacter.pending, handlePendingItem)
+      .addCase(updateCharacter.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.item = action.payload;
+        toast(`Update ${action.payload.nickname} character`);
+      })
+      .addCase(updateCharacter.rejected, handleRejectedItem)
+
       .addCase(deleteCharacter.pending, handlePending)
-      .addCase(deleteCharacter.fulfilled, (state, action) => {
+      .addCase(deleteCharacter.fulfilled, state => {
         state.loading = false;
         state.error = null;
         state.item = {};

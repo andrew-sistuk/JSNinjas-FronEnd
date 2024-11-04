@@ -8,12 +8,14 @@ import css from './HeroForm.module.css';
 import { Button } from 'components';
 
 import { schemaCreate, schemaUpdate, useModal } from 'helpers';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCharacter } from 'myRedux/characters/selectors.js';
+import { addCharacter, updateCharacter } from 'myRedux/characters/operations.js';
 
 export function HeroForm() {
   const character = useSelector(selectCharacter);
-  const { modal } = useModal();
+  const { modal, setModal } = useModal();
+  const dispatch = useDispatch();
 
   const type = modal.type === 'edit';
   const required = type ? '' : '*';
@@ -30,7 +32,17 @@ export function HeroForm() {
   });
 
   function onSubmit(data) {
-    console.log('Form Data:', data); // Перевірка даних форми
+    console.log('Form Data:', data);
+    if (type) {
+      dispatch(updateCharacter({ _id: character._id, ...data }));
+    } else {
+      dispatch(addCharacter(data));
+    }
+
+    setModal({
+      isOpen: false,
+      type: 'create',
+    });
     toast('Booking sent!');
   }
 
@@ -81,19 +93,6 @@ export function HeroForm() {
 
       <textarea
         className={clsx(css.field, css.comment)}
-        {...register('catch_phrase')}
-        placeholder={'Catch phrase' + required}
-        data-tooltip-id="my-tooltip-catch-phrase"
-      ></textarea>
-      <ReactTooltip
-        id="my-tooltip-catch-phrase"
-        place="top-end"
-        variant={errors.name ? 'error' : 'dark'}
-        content={errors.name ? errors.name.message : 'You must write catch phrase this character'}
-      />
-
-      <textarea
-        className={clsx(css.field, css.comment)}
         {...register('superpowers')}
         placeholder={'Superpowers' + required}
         data-tooltip-id="my-tooltip-superpowers"
@@ -106,6 +105,20 @@ export function HeroForm() {
           errors.name ? errors.name.message : 'You must describe catch phrase this character'
         }
       />
+
+      <textarea
+        className={clsx(css.field, css.comment)}
+        {...register('catch_phrase')}
+        placeholder={'Catch phrase' + required}
+        data-tooltip-id="my-tooltip-catch-phrase"
+      ></textarea>
+      <ReactTooltip
+        id="my-tooltip-catch-phrase"
+        place="top-end"
+        variant={errors.name ? 'error' : 'dark'}
+        content={errors.name ? errors.name.message : 'You must write catch phrase this character'}
+      />
+
       <Button value="Send" type="submit" />
     </form>
   );

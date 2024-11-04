@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { Loader, Message, Modal } from 'components';
+import { Loader, Message, Modal, Toaster } from 'components';
 
 const Header = lazy(() => import('./components/Header/Header'));
 const Characters = lazy(() => import('./pages/Characters/Characters'));
@@ -16,6 +16,7 @@ function App() {
         </Route>
         <Route path="*" element={<Message message="Page Not Found" />} />
       </Routes>
+      <Toaster />
       <Modal />
     </Suspense>
   );

@@ -31,6 +31,33 @@ export const fetchCharacter = createAsyncThunk(
   }
 );
 
+export const addCharacter = createAsyncThunk(
+  'characters/addCharacter',
+  async (newHero, thunkAPI) => {
+    try {
+      const result = await axios.post('/characters', { ...newHero });
+      console.log(result.data.data);
+      return result.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateCharacter = createAsyncThunk(
+  'characters/updateCharacter',
+  async (newHero, thunkAPI) => {
+    try {
+      const id = newHero._id;
+      delete newHero._id;
+      const response = await axios.patch(`/characters/${id}`, { ...newHero });
+      return response.data.data.character;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const deleteCharacter = createAsyncThunk(
   'characters/deleteCharacter',
   async (id, thunkAPI) => {

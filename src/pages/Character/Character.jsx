@@ -3,8 +3,14 @@ import { Container } from 'layouts';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { deleteCharacter, fetchCharacter, selectCharacter } from 'myRedux';
-import { Button } from 'components';
+import {
+  deleteCharacter,
+  fetchCharacter,
+  selectCharacter,
+  selectError,
+  selectLoading,
+} from 'myRedux';
+import { Button, Message } from 'components';
 import { useModal } from 'helpers';
 
 function Character() {
@@ -12,6 +18,8 @@ function Character() {
   const dispatch = useDispatch();
   const { setModal } = useModal();
   const navigate = useNavigate();
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchCharacter(id));
@@ -25,9 +33,12 @@ function Character() {
     navigate('/characters');
   };
 
-  return (
+  return error && !loading ? (
+    <Message message="Something went wrong. Please try again." />
+  ) : (
     <section className={css.character}>
       <Container>
+        {loading && <Message message="Loading..." />}
         <ul className={css.gallery}>
           {/*{gallery.map(({id, thumb, original}) => (*/}
           {/*    <li className={css['photo-container']} key={id}>*/}
@@ -40,6 +51,7 @@ function Character() {
           {/*    </li>*/}
           {/*))}*/}
         </ul>
+
         <div className={css.info}>
           <h2 className={css.nickname}>{nickname}</h2>
           <h3 className={css['real-name']}>{real_name}</h3>
